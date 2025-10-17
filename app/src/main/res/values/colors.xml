@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- START OF ADDED CODE -->
+    <!-- Các màu cho chỉ số chất lượng không khí (AQI) dựa trên ảnh tham khảo -->
+    <color name="good">#00E400</color>
+    <color name="moderate">#FFFF00</color>
+    <color name="unhealthy_sensitive">#FF7E00</color>
+    <color name="unhealthy">#FF0000</color>
+    <color name="very_unhealthy">#8F3F97</color>
+    <color name="hazardous">#7E0023</color>
+    <color name="default_color">#33000000</color>
+    <color name="text_view">#FF000000</color>
+    <color name="lv1human">#FFBFEFFF</color>
+    <color name="lv2human">#FFADD8E6</color>
+    <color name="lv3human">#FF87CEEB</color>
+    <color name="lv4human">#FF009ACD</color>
+
+    <!-- END OF ADDED CODE -->
+</resources>
