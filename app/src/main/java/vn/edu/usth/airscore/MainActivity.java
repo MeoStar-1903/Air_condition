@@ -1,10 +1,10 @@
 package vn.edu.usth.airscore;
 
 import androidx.appcompat.app.AppCompatActivity;
-// START OF ADDED CODE
+
 import androidx.core.content.ContextCompat;
 import android.widget.LinearLayout;
-// END OF ADDED CODE
+
 
 import android.os.Bundle;
 import android.view.View;
@@ -26,17 +26,16 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     // Các TextView hiển thị thông tin
-    private TextView cityNameText, temperatureText, bigDustText, smallDustText,
-            ozoneText, carbonText, nitroText, sulfurText, humidityText, AQIText;
+    private TextView cityNameText, temperatureText, bigDustText, smallDustText, ozoneText, carbonText, nitroText, sulfurText, humidityText, AQIText;
     private Button refreshButton;
     private EditText cityNameInput;
 
-    // START OF ADDED CODE
+
     // Các LinearLayout để thay đổi màu nền
     private LinearLayout bigDustLayout, dustLayout, ozonLayout, carbonLayout, nitroLayout, sulfurLayout, humidityLayout, AQILayout;
-    // END OF ADDED CODE
 
-    // Token API WAQI
+
+    // Token API
     private static final String API_TOKEN = "08ae6daebe6eba197a3b5b33944c1e099a25bcd5";
 
     @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         refreshButton   = findViewById(R.id.fetchButton);
         cityNameInput   = findViewById(R.id.cityNameInput);
 
-        // START OF ADDED CODE
+
         // Liên kết các layout card
         bigDustLayout   = findViewById(R.id.bigDustLayout);
         dustLayout      = findViewById(R.id.dustLayout);
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         sulfurLayout    = findViewById(R.id.sulfurLayout);
         humidityLayout  = findViewById(R.id.humidityLayout);
         AQILayout       = findViewById(R.id.AQILayout);
-        // END OF ADDED CODE
+
 
         //  Gán sẵn tên thành phố
         cityNameInput.setText("Hanoi");
@@ -151,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     humidityText.setText(String.format("%.0f", humidity));
                     AQIText.setText(String.format("%d", aqi));
 
-                    // START OF ADDED CODE
+
                     // Cập nhật màu sắc cho các card
                     AQILayout.setBackgroundColor(ContextCompat.getColor(this, getAqiColor(aqi)));
                     dustLayout.setBackgroundColor(ContextCompat.getColor(this, getPm25Color(pm25)));
@@ -161,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                     sulfurLayout.setBackgroundColor(ContextCompat.getColor(this, getSo2Color(sulfur)));
                     nitroLayout.setBackgroundColor(ContextCompat.getColor(this, getNo2Color(nitrogen)));
                     humidityLayout.setBackgroundColor(ContextCompat.getColor(this, getHumidityColor(humidity)));
-                    // END OF ADDED CODE
+
 
                 } else {
                     Toast.makeText(this, "Không tìm thấy dữ liệu cho thành phố này", Toast.LENGTH_SHORT).show();
@@ -174,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // START OF ADDED CODE
+
     /**
      * Các hàm helper để lấy màu dựa trên chỉ số ô nhiễm.
      * Thang đo được tham khảo từ ảnh image_862665.png do người dùng cung cấp.
@@ -197,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         return R.color.hazardous;
     }
 
-    // Thang đo PM10 không có trong ảnh, sử dụng thang đo chuẩn
+
     private int getPm10Color(double pm10) {
         if (pm10 <= 54) return R.color.good;
         if (pm10 <= 154) return R.color.moderate;
@@ -207,13 +206,13 @@ public class MainActivity extends AppCompatActivity {
         return R.color.hazardous;
     }
 
-    // Đơn vị Ozone trong ảnh là ppm, của API là ppb. 1 ppm = 1000 ppb. Chuyển đổi thang đo.
+
     private int getOzoneColor(double ozone_ppb) {
-        if (ozone_ppb <= 54) return R.color.good; // 0.054 ppm
-        if (ozone_ppb <= 70) return R.color.moderate; // 0.070 ppm
-        if (ozone_ppb <= 85) return R.color.unhealthy_sensitive; // 0.085 ppm
-        if (ozone_ppb <= 105) return R.color.unhealthy; // 0.105 ppm
-        if (ozone_ppb <= 200) return R.color.very_unhealthy; // 0.200 ppm
+        if (ozone_ppb <= 54) return R.color.good;
+        if (ozone_ppb <= 70) return R.color.moderate;
+        if (ozone_ppb <= 85) return R.color.unhealthy_sensitive;
+        if (ozone_ppb <= 105) return R.color.unhealthy;
+        if (ozone_ppb <= 200) return R.color.very_unhealthy;
         return R.color.hazardous;
     }
 
@@ -226,35 +225,34 @@ public class MainActivity extends AppCompatActivity {
         return R.color.hazardous;
     }
 
-    // Đơn vị SO2 trong ảnh là ppm, của API là ppb. Chuyển đổi thang đo.
+
     private int getSo2Color(double so2_ppb) {
-        if (so2_ppb <= 35) return R.color.good; // 0.035 ppm
-        if (so2_ppb <= 75) return R.color.moderate; // 0.075 ppm
-        if (so2_ppb <= 185) return R.color.unhealthy_sensitive; // 0.185 ppm
-        if (so2_ppb <= 304) return R.color.unhealthy; // 0.304 ppm
-        if (so2_ppb <= 604) return R.color.very_unhealthy; // 0.604 ppm
+        if (so2_ppb <= 35) return R.color.good;
+        if (so2_ppb <= 75) return R.color.moderate;
+        if (so2_ppb <= 185) return R.color.unhealthy_sensitive;
+        if (so2_ppb <= 304) return R.color.unhealthy;
+        if (so2_ppb <= 604) return R.color.very_unhealthy;
         return R.color.hazardous;
     }
 
     private int getNo2Color(double no2_value) {
-        // API thường trả về NO2 với đơn vị ppb. Giả sử giá trị từ API là ppb.
-        // Chuyển đổi thang đo từ ppm trong ảnh sang ppb
-        if (no2_value <= 53) return R.color.good; // 0.053 ppm
-        if (no2_value <= 100) return R.color.moderate; // 0.100 ppm
-        if (no2_value <= 360) return R.color.unhealthy_sensitive; // 0.360 ppm
-        if (no2_value <= 649) return R.color.unhealthy; // 0.649 ppm
-        if (no2_value <= 1249) return R.color.very_unhealthy; // 1.249 ppm
+
+        if (no2_value <= 53) return R.color.good;
+        if (no2_value <= 100) return R.color.moderate;
+        if (no2_value <= 360) return R.color.unhealthy_sensitive;
+        if (no2_value <= 649) return R.color.unhealthy;
+        if (no2_value <= 1249) return R.color.very_unhealthy;
         return R.color.hazardous;
     }
 
-    // Thang đo độ ẩm tham khảo từ ảnh image_862649.jpg
+
     private int getHumidityColor(double humidity) {
         if (humidity < 25) return R.color.lv1human;
         if (humidity <= 30) return R.color.lv2human;
         if (humidity <= 60) return R.color.lv3human;
         if (humidity > 60) return R.color.lv4human;
 
-        return R.color.unhealthy_sensitive; // Rất ẩm
+        return R.color.unhealthy_sensitive;
     }
-    // END OF ADDED CODE
+
 }

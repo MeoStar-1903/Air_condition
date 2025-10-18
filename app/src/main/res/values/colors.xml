@@ -3,8 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- START OF ADDED CODE -->
-    <!-- Các màu cho chỉ số chất lượng không khí (AQI) dựa trên ảnh tham khảo -->
+
+
     <color name="good">#00E400</color>
     <color name="moderate">#FFFF00</color>
     <color name="unhealthy_sensitive">#FF7E00</color>
@@ -18,5 +18,5 @@
     <color name="lv3human">#FF87CEEB</color>
     <color name="lv4human">#FF009ACD</color>
 
-    <!-- END OF ADDED CODE -->
+
 </resources>

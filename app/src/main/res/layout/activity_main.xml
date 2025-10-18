@@ -55,9 +55,7 @@
             android:layout_margin="5dp"
             >
 
-            <!-- CHÚ THÍCH: BẮT ĐẦU THAY ĐỔI -->
-            <!-- Ban đầu, đây là một LinearLayout với background. -->
-            <!-- Tôi đã thay thế nó bằng CardView để tạo hiệu ứng thẻ bo góc và có chiều sâu. -->
+
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,7 +65,7 @@
                 app:cardCornerRadius="15dp"
                 app:cardElevation="4dp">
 
-                <!-- LinearLayout gốc bây giờ nằm bên trong CardView để chứa nội dung. -->
+
                 <LinearLayout
                     android:id="@+id/bigDustLayout"
                     android:layout_width="match_parent"
@@ -104,9 +102,7 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-            <!-- KẾT THÚC THAY ĐỔI -->
 
-            <!-- CHÚ THÍCH: Tương tự, khối này cũng được chuyển thành CardView. -->
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
