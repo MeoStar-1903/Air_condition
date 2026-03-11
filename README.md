@@ -34,7 +34,7 @@ Air Score is an Android application designed to provide real-time air quality an
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone <your-repository-url>```
+   git clone <repository-url>
 2. **Open the project in Android Studio.**
 3. **Sync the project with Gradle files to download the required dependencies (Volley, OkHttp, Material Components, etc.).**
 4. **Run the application on an emulator or a physical Android device.**
